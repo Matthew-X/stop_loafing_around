@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:cardBackgroundColor="@color/yellow_primary_2"
+            app:cardBackgroundColor="@color/yellow_primary_1"
             app:cardCornerRadius="10dp"
             app:cardElevation="4dp">
 
@@ -33,6 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:backgroundTint="#000000"
                     android:hint="Recipe Name"
                     android:textColorHint="@color/design_default_color_on_secondary"
                     app:hintTextColor="#000000">
@@ -40,13 +41,24 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/create_recipe_name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#000000" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ingredients_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_ingredient_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Add"
+                    android:textColor="@color/design_default_color_on_secondary"
+                    app:backgroundTint="@color/yellow_primary_2"
+                    app:cornerRadius="100dp" />
 
             </LinearLayout>
 
@@ -63,6 +75,7 @@
         android:id="@+id/finish_create_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow_primary_2"
         android:text="Finish"
         android:textColor="@color/design_default_color_on_secondary"
         app:cornerRadius="100dp"
@@ -74,6 +87,7 @@
         android:id="@+id/add_step_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow_primary_2"
         android:text="Add"
         android:textColor="@color/design_default_color_on_secondary"
         app:cornerRadius="100dp"

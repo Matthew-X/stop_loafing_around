@@ -1,21 +1,32 @@
 package com.example.stop_loafing_around
 
 import android.content.Context
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.EditText
+import androidx.core.widget.doBeforeTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stop_loafing_around.databinding.FragmentCreateBinding
+import com.example.stop_loafing_around.databinding.IngredientBinding
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
-class Ingredients_adapter(private val adapter_array: ArrayList<String>) :
+class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredients) :
     RecyclerView.Adapter<Ingredients_adapter.ViewHolder>() {
+
+    private var _binding: FragmentCreateBinding? = null
+    private val binding = _binding!!
 
     class ViewHolder(view: View ) : RecyclerView.ViewHolder(view){
         val ingredient: TextInputEditText
-
+        val ingredient_hint: TextInputLayout
         init {
             ingredient = view.findViewById(R.id.ingredient_text)
+            ingredient_hint = view.findViewById(R.id.ingredint_hint)
         }
     }
 
@@ -27,16 +38,22 @@ class Ingredients_adapter(private val adapter_array: ArrayList<String>) :
         return position
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Ingredients_adapter.ViewHolder {
-        TODO("Not yet implemented")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.ingredient,parent,false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: Ingredients_adapter.ViewHolder, position: Int) {
-
+        holder.ingredient_hint.hint = "Ingredient " + (position+1)
+        holder.ingredient.text = SpannableStringBuilder(adapter_array[position])
+        holder.ingredient.doBeforeTextChanged { text, start, count, after ->
+            adapter_array[position] = text.toString()
+        }
     }
 
     override fun getItemCount(): Int {
-        adapter_array.size
+        return adapter_array.size
     }
 
 }
