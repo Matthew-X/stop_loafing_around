@@ -1,0 +1,2 @@
+rootProject.name = "stop_loafing_around"
+include ':app'
