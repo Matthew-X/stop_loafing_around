@@ -1,13 +1,13 @@
-package com.example.stop_loafing_around.ui.gallery
+package com.example.stop_loafing_around.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GalleryViewModel : ViewModel() {
+class RecomendedViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }
