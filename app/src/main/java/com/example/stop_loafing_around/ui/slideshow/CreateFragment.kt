@@ -1,10 +1,13 @@
 package com.example.stop_loafing_around.ui.slideshow
 
 import android.database.StaleDataException
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,6 +54,15 @@ class CreateFragment : Fragment() {
         steps_recycler!!.layoutManager = LinearLayoutManager(context)
 
         return root
+    }
+
+    fun processImages(image: Uri?){
+        val root: View = binding.root
+        steps_recycler = root.findViewById(R.id.steps_recycler)
+        val inputStream = activity?.contentResolver?.openInputStream(image!!)
+        val card_image = Drawable.createFromStream(inputStream,image.toString())
+        val add_img_button = steps_recycler?.findViewById<ImageView>(R.id.step_img)
+        add_img_button?.setImageDrawable(card_image)
     }
 
     override fun onDestroyView() {

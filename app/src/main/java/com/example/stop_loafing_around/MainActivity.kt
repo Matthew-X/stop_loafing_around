@@ -1,5 +1,7 @@
 package com.example.stop_loafing_around
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,7 +13,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.stop_loafing_around.databinding.ActivityMainBinding
+import com.example.stop_loafing_around.ui.slideshow.CreateFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,5 +50,19 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            1 -> if (resultCode === RESULT_OK){
+                val selectedImage:Uri? = data?.data
+                val NavHostFragment: NavHostFragment? =
+                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
+                with(NavHostFragment!!.childFragmentManager.fragments[0]){
+                    (this as CreateFragment).processImages(selectedImage)
+                }
+            }
+        }
     }
 }

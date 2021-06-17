@@ -1,10 +1,14 @@
 package com.example.stop_loafing_around
 
+import android.content.Intent
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
@@ -15,18 +19,22 @@ import com.google.android.material.textfield.TextInputLayout
 class Steps_adapter(private val adapter_array: ArrayList<One_step> = Recipes.steps_array) :
     RecyclerView.Adapter<Steps_adapter.ViewHolder>() {
 
+    val pickImage = 100
+
     class ViewHolder(view: View ) : RecyclerView.ViewHolder(view){
         val step_description: TextInputEditText
         val step_timer_hours: TextInputEditText
         val step_timer_minutes: TextInputEditText
         val step_timer_seconds: TextInputEditText
         val step_hint: TextInputLayout
+        val step_img: ImageView
         init {
             step_description = view.findViewById(R.id.step_text)
             step_timer_hours = view.findViewById(R.id.hours_step)
             step_timer_minutes = view.findViewById(R.id.minutes_step)
             step_timer_seconds = view.findViewById(R.id.seconds_step)
             step_hint = view.findViewById(R.id.step_number_hint)
+            step_img = view.findViewById(R.id.step_img)
         }
     }
 
@@ -61,6 +69,10 @@ class Steps_adapter(private val adapter_array: ArrayList<One_step> = Recipes.ste
         holder.step_timer_seconds.text = adapter_array[position].timer[2]
         holder.step_timer_seconds.doOnTextChanged { text, start, count, after ->
             adapter_array[position].timer[2] = text as Editable
+        }
+        holder.step_img.setOnClickListener{
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            MainActivity().startActivityForResult(gallery, pickImage)
         }
     }
 
