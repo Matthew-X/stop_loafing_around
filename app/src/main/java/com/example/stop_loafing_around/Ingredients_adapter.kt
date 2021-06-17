@@ -8,18 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doBeforeTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stop_loafing_around.databinding.FragmentCreateBinding
-import com.example.stop_loafing_around.databinding.IngredientBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredients) :
     RecyclerView.Adapter<Ingredients_adapter.ViewHolder>() {
-
-    private var _binding: FragmentCreateBinding? = null
-    private val binding = _binding!!
 
     class ViewHolder(view: View ) : RecyclerView.ViewHolder(view){
         val ingredient: TextInputEditText
@@ -28,14 +25,6 @@ class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredi
             ingredient = view.findViewById(R.id.ingredient_text)
             ingredient_hint = view.findViewById(R.id.ingredint_hint)
         }
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return position
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,7 +36,7 @@ class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredi
     override fun onBindViewHolder(holder: Ingredients_adapter.ViewHolder, position: Int) {
         holder.ingredient_hint.hint = "Ingredient " + (position+1)
         holder.ingredient.text = SpannableStringBuilder(adapter_array[position])
-        holder.ingredient.doBeforeTextChanged { text, start, count, after ->
+        holder.ingredient.doOnTextChanged { text, start, count, after ->
             adapter_array[position] = text.toString()
         }
     }
@@ -56,4 +45,11 @@ class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredi
         return adapter_array.size
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 }

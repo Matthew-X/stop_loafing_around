@@ -20,13 +20,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="Step"
-            android:textColorHint="@color/design_default_color_on_secondary"
+            android:textColorHint="#000000"
+            app:boxStrokeColor="#000000"
             app:hintTextColor="#000000">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/step_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -41,13 +43,16 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:hint="Hours"
-                android:textColorHint="@color/design_default_color_on_secondary"
+                android:textColorHint="#000000"
+                app:boxStrokeColor="#000000"
                 app:hintTextColor="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/hours_step"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -57,13 +62,16 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:hint="Minutes"
-                android:textColorHint="@color/design_default_color_on_secondary"
+                android:textColorHint="#000000"
+                app:boxStrokeColor="#000000"
                 app:hintTextColor="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/minutes_step"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -73,13 +81,16 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:hint="Seconds"
-                android:textColorHint="@color/design_default_color_on_secondary"
+                android:textColorHint="#000000"
+                app:boxStrokeColor="#000000"
                 app:hintTextColor="#000000">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/seconds_step"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
