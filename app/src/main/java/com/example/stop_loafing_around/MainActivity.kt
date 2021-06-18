@@ -1,6 +1,7 @@
 package com.example.stop_loafing_around
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
@@ -57,10 +58,25 @@ class MainActivity : AppCompatActivity() {
         when(requestCode){
             1 -> if (resultCode === RESULT_OK){
                 val selectedImage:Uri? = data?.data
+                for (i in 0 until Recipes.steps_array.size){
+                    if (Recipes.steps_array[i].load_img == true) {
+                        Recipes.steps_array[i].image = selectedImage
+                        Recipes.steps_array[i].load_img = false
+                    }
+                }
                 val NavHostFragment: NavHostFragment? =
                     supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
                 with(NavHostFragment!!.childFragmentManager.fragments[0]){
-                    (this as CreateFragment).processImages(selectedImage)
+                    (this as CreateFragment).processImages()
+                }
+            }
+            2 -> if (resultCode === RESULT_OK){
+                val selectedImage:Uri? = data?.data
+                Recipes.preview_image = selectedImage
+                val NavHostFragment: NavHostFragment? =
+                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
+                with(NavHostFragment!!.childFragmentManager.fragments[0]){
+                    (this as CreateFragment).processImages()
                 }
             }
         }
