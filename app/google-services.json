@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "107205804300",
+    "project_id": "stop-loafing-around",
+    "storage_bucket": "stop-loafing-around.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107205804300:android:b596db0fa4c85738688929",
+        "android_client_info": {
+          "package_name": "com.example.stop_loafing_around"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107205804300-dthmaot80oehvsmnqocu7pnpcd6ut5vi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-EpEOD4Wu9S15eo7k_I92ZdIJMZtPVeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107205804300-dthmaot80oehvsmnqocu7pnpcd6ut5vi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
