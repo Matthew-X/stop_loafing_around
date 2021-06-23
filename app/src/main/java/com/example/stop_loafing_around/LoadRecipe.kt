@@ -37,9 +37,10 @@ class LoadRecipe {
             if (steps != null) {
                 for (i in 0 until steps.length()) {
                     var timer = arrayListOf<Editable?>()
-                        var hours = JSONObject(steps.getString(i)).getString("timer").toInt()/60/60
-                        var minutes = JSONObject(steps.getString(i)).getString("timer").toInt()/60 - hours*60
-                        var seconds = JSONObject(steps.getString(i)).getString("timer").toInt()- minutes*60 - hours*60
+                        var hours:Int = JSONObject(steps.getString(i)).getString("timer").toInt()/60/60
+                        var minutes:Int = JSONObject(steps.getString(i)).getString("timer").toInt()/60 - hours*60
+                        var seconds:Int = JSONObject(steps.getString(i)).getString("timer").toInt() - minutes*60 - hours*60*60
+                    Log.d("time",seconds.toString())
                         timer = arrayListOf<Editable?>(
                             Editable.Factory.getInstance().newEditable(hours.toString()),
                             Editable.Factory.getInstance().newEditable(minutes.toString()),

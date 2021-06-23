@@ -40,8 +40,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:hint="Hours"
                 android:textColorHint="#000000"
                 app:boxStrokeColor="#000000"
@@ -51,6 +53,8 @@
                     android:id="@+id/hours_step"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="#000000" />
@@ -60,8 +64,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:hint="Minutes"
                 android:textColorHint="#000000"
                 app:boxStrokeColor="#000000"
@@ -71,6 +77,8 @@
                     android:id="@+id/minutes_step"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="#000000" />
@@ -80,8 +88,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:hint="Seconds"
                 android:textColorHint="#000000"
                 app:boxStrokeColor="#000000"
@@ -91,6 +101,8 @@
                     android:id="@+id/seconds_step"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:inputType="number"
                     android:maxLength="2"
                     android:textColor="#000000" />
@@ -102,7 +114,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             app:cardBackgroundColor="@color/yellow_primary_2"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="4dp">
 
             <ImageView
