@@ -1,17 +1,13 @@
-package com.example.stop_loafing_around
+package com.example.stop_loafing_around.adapters
 
-import android.content.Context
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.EditText
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stop_loafing_around.R
+import com.example.stop_loafing_around.Recipes
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -33,7 +29,7 @@ class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredi
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: Ingredients_adapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.ingredient_hint.hint = "Ingredient " + (position+1)
         holder.ingredient.text = SpannableStringBuilder(adapter_array[position])
         holder.ingredient.doOnTextChanged { text, start, count, after ->
@@ -51,5 +47,9 @@ class Ingredients_adapter(val adapter_array: ArrayList<String> = Recipes.ingredi
 
     override fun getItemViewType(position: Int): Int {
         return position
+    }
+
+    fun update(){
+        this.notifyDataSetChanged()
     }
 }

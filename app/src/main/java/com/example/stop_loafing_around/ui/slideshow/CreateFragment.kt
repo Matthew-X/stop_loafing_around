@@ -11,11 +11,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stop_loafing_around.*
+import com.example.stop_loafing_around.adapters.Ingredients_adapter
+import com.example.stop_loafing_around.adapters.Steps_adapter
 import com.example.stop_loafing_around.databinding.FragmentCreateBinding
 
 

@@ -19,6 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@drawable/rounded_side_drawer"
         android:fitsSystemWindows="true"
+        app:itemShapeFillColor="@color/green_primary_3"
+        app:itemTextColor="#000000"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

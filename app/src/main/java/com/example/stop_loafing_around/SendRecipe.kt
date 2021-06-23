@@ -8,6 +8,10 @@ class SendRecipe {
     fun sendRecipeData(){
         val db = Firebase.firestore
         val myRef = db.collection("recipe")
+//        var stepsString = ""
+//        for (i in 0 until Recipes.steps_array.size){
+//            stepsString = stepsString.
+//        }
         myRef.document().set(
             hashMapOf(
                 "name" to Recipes.recipe_name,
