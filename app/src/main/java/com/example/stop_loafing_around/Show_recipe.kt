@@ -15,7 +15,7 @@ class Show_recipe : AppCompatActivity() {
 
     private var steps_recycler: RecyclerView? = null
     private var ingredients_recycler: RecyclerView? = null
-    private val s_adapter = Show_steps_adapter()
+    private val s_adapter = Show_steps_adapter(activity = this)
     private val i_adapter = Show_ingredients_adapter()
     private var _binding: ShowRecipeBinding? = null
     private val binding get() = _binding!!
