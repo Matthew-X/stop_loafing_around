@@ -11,7 +11,7 @@ import com.example.stop_loafing_around.adapters.Show_ingredients_adapter
 import com.example.stop_loafing_around.adapters.Show_steps_adapter
 import com.example.stop_loafing_around.databinding.ShowRecipeBinding
 
-class show_recipe : AppCompatActivity() {
+class Show_recipe : AppCompatActivity() {
 
     private var steps_recycler: RecyclerView? = null
     private var ingredients_recycler: RecyclerView? = null

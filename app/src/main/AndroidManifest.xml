@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Stop_loafing_around">
-        <activity android:name=".show_recipe"></activity>
+        <activity android:name=".Show_recipe"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

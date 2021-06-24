@@ -44,13 +44,12 @@ class Display_recomended_adapter(val adapter_array: ArrayList<String> = Recipe_t
             holder.card.visibility = View.VISIBLE
             val inputStream = context?.contentResolver?.openInputStream(Recipe_to_load.preview_images[position]!!)
             var step_image = Drawable.createFromStream(inputStream, Recipe_to_load.preview_images[position].toString())
-            Log.d("cantcook",Recipe_to_load.preview_images.toString())
             holder.image.setImageDrawable(step_image)
         }else holder.card.visibility = View.GONE
         holder.click_card.setOnClickListener{
             Recipe_to_load.reset()
             Recipe_to_load.recipe_name = adapter_array[position]
-            val intent = Intent(context, show_recipe::class.java)
+            val intent = Intent(context, Show_recipe::class.java)
             context?.startActivity(intent)
         }
     }

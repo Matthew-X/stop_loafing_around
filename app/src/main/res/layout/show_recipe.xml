@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.slideshow.CreateFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/finish_create_button"
@@ -91,7 +91,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/ingredients_recycler_view"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false" />
 
                 </LinearLayout>
 
@@ -100,10 +101,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/steps_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/finish_create_button"

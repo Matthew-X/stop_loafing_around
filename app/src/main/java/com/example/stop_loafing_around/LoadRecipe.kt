@@ -22,26 +22,28 @@ class LoadRecipe {
             for (document in documentSnapshot){
                 if (!Recipe_to_load.recipes_list.contains(document.get("name").toString())){
                     Recipe_to_load.recipes_list.add(document.get("name").toString())
-                    storageRef.child("${document.get("name").toString()}/mainImage/ImgFile").getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                }
+                Recipe_to_load.preview_images = arrayListOf()
+                for (i in 0 until Recipe_to_load.recipes_list.size){
+                    Recipe_to_load.preview_images.add(null)
+                }
+                for (i in 0 until Recipe_to_load.recipes_list.size){
+                    storageRef.child("${Recipe_to_load.recipes_list[i]}/mainImage/ImgFile").getBytes(Long.MAX_VALUE).addOnSuccessListener {
                         val image = BitmapFactory.decodeByteArray(it, 0, it.size)
-                        Recipe_to_load.preview_images.add(getImageUri(image,context))
+                        Recipe_to_load.preview_images[i] = (getImageUri(image,context))
                         recomended_recycler?.adapter?.notifyDataSetChanged()
-                        recomended_recycler?.adapter?.notifyDataSetChanged()
-                    }.addOnFailureListener {
-                        Recipe_to_load.preview_images.add(null)
                     }
                 }
             }
-            recomended_recycler?.adapter?.notifyDataSetChanged()
             recomended_recycler?.adapter?.notifyDataSetChanged()
         }
     }
     fun getRecipeData(
         recipe_name: String = "",
         adapter1: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null,
-        adapter2: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null,
+        ingredientsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null,
         context: Context,
-        showRecipe: show_recipe? = null
+        showRecipe: Show_recipe? = null
     ){
         val db = Firebase.firestore
         val docRef = db.collection("recipe").document(recipe_name)
@@ -68,6 +70,16 @@ class LoadRecipe {
                         )
                     )
                 }
+                val storage = Firebase.storage
+                val storageRef = storage.reference
+                for (i in 0 until Recipe_to_load.steps_array.size){
+                    storageRef.child("${Recipe_to_load.recipe_name}/steps/step${i+1}/ImgFile").getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                        val image = BitmapFactory.decodeByteArray(it, 0, it.size)
+                        Recipe_to_load.steps_array[i].image = getImageUri(image,context)
+                        Log.d("stepimg",Recipe_to_load.steps_array[i].load_img .toString())
+                        adapter1?.notifyDataSetChanged()
+                    }
+                }
             }
 
             val ingredients = JSONArray(documentSnapshot.data?.get("ingredients").toString())
@@ -79,15 +91,10 @@ class LoadRecipe {
             }
             Log.d("recipe", Recipe_to_load.ingredients.toString())
             adapter1?.notifyDataSetChanged()
-            adapter2?.notifyDataSetChanged()
-        }
-        val storage = Firebase.storage
-        val storageRef = storage.reference
-        storageRef.child("${recipe_name}/mainImage/ImgFile").getBytes(Long.MAX_VALUE).addOnSuccessListener {
-            val image = BitmapFactory.decodeByteArray(it, 0, it.size)
-            Recipe_to_load.preview_image = getImageUri(image,context)
-            Log.d("preview_img",Recipe_to_load.preview_image.toString())
-            showRecipe?.update()
+            ingredientsAdapter?.notifyDataSetChanged()
+
+
+
         }
     }
 }

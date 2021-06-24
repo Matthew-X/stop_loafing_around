@@ -46,7 +46,7 @@ class SendRecipe {
         for (i in 0 until Recipes.steps_array.size){
             if (Recipes.steps_array[i].image != null){
                 file = Recipes.steps_array[i].image
-                uploadTask = storageRef.child("${Recipes.recipe_name}/steps/step${i}/ImgFile").putFile(file!!)
+                uploadTask = storageRef.child("${Recipes.recipe_name}/steps/step${i+1}/ImgFile").putFile(file!!)
             }
         }
 

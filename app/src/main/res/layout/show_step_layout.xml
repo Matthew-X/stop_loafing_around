@@ -145,7 +145,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             app:cardBackgroundColor="@color/yellow_primary_2"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="5dp"
             app:cardElevation="4dp">
 
             <ImageView

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.opengl.Visibility
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,10 +66,13 @@ class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_loa
         holder.step_hint.hint = "Step " + (position+1)
         holder.step_description.text = adapter_array[position].description
         if (adapter_array[position].image != null){
+            holder.step_card_img.visibility = View.VISIBLE
             val inputStream = context?.contentResolver?.openInputStream(adapter_array[position].image!!)
             var step_image = Drawable.createFromStream(inputStream,adapter_array[position].image.toString())
             holder.step_img.setImageDrawable(step_image)
-        }else holder.step_card_img.visibility = View.GONE
+        }else {
+            holder.step_card_img.visibility = View.GONE
+        }
         if (
             adapter_array[position].timer[0].toString().toInt() == 0 &&
             adapter_array[position].timer[1].toString().toInt() == 0 &&
