@@ -25,7 +25,7 @@ import com.example.stop_loafing_around.Recipes
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_load.steps_array,val activity: Activity? = null) :
+class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_load.steps_array,val activity: Activity) :
     RecyclerView.Adapter<Show_steps_adapter.ViewHolder>() {
 
     var context: Context? = null
@@ -35,7 +35,8 @@ class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_loa
         val step_timer_hours: TextInputEditText
         val step_timer_minutes: TextInputEditText
         val step_timer_seconds: TextInputEditText
-        val start_timer_b: LinearLayout
+        val start_timer_b: Button
+        val start_timer_linearL: LinearLayout
         val step_hint: TextInputLayout
         val step_img: ImageView
         val step_card_img: CardView
@@ -47,7 +48,8 @@ class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_loa
             step_hint = view.findViewById(R.id.step_number_hint)
             step_img = view.findViewById(R.id.step_img)
             step_card_img = view.findViewById(R.id.show_card_img)
-            start_timer_b = view.findViewById(R.id.linearLayout_show_timer)
+            start_timer_b = view.findViewById(R.id.start_timer)
+            start_timer_linearL = view.findViewById(R.id.linearLayout_show_timer)
         }
     }
 
@@ -82,7 +84,7 @@ class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_loa
             adapter_array[position].timer[1].toString().toInt() == 0 &&
             adapter_array[position].timer[2].toString().toInt() == 0
         ){
-            holder.start_timer_b.visibility = View.GONE
+            holder.start_timer_linearL.visibility = View.GONE
         }else{
         holder.step_timer_hours.text = adapter_array[position].timer[0]
         holder.step_timer_minutes.text = adapter_array[position].timer[1]
@@ -90,8 +92,9 @@ class Show_steps_adapter (val adapter_array: ArrayList<One_step> = Recipe_to_loa
         }
         holder.start_timer_b.setOnClickListener{
             val intent = Intent(AlarmClock.ACTION_SET_TIMER)
-            intent.putExtra(AlarmClock.EXTRA_LENGTH, (Recipes.steps_array[position].timer[0].toString().toInt()*60*60+Recipes.steps_array[position].timer[1].toString().toInt()*60+Recipes.steps_array[position].timer[2].toString().toInt()))
-            activity?.startActivity(intent)
+            val timerTime = (Recipe_to_load.steps_array[position].timer[0].toString().toInt()*60*60+Recipe_to_load.steps_array[position].timer[1].toString().toInt()*60+Recipe_to_load.steps_array[position].timer[2].toString().toInt())
+            intent.putExtra(AlarmClock.EXTRA_LENGTH, timerTime)
+            activity.startActivity(intent)
         }
     }
 
