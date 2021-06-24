@@ -1,34 +1,48 @@
 package com.example.stop_loafing_around
 
-import android.net.Uri
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.text.Editable
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stop_loafing_around.adapters.Display_recomended_adapter
-import com.example.stop_loafing_around.adapters.Show_steps_adapter
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.json.JSONArray
 import org.json.JSONObject
-import kotlin.math.min
 
 
 class LoadRecipe {
-    fun getRecipePreview(recomended_recycler: RecyclerView?) {
+    fun getRecipePreview(recomended_recycler: RecyclerView?,context: Context) {
         val db = Firebase.firestore
         val docRef = db.collection("recipe")
+        val storage = Firebase.storage
+        val storageRef = storage.reference
         docRef.get().addOnSuccessListener { documentSnapshot ->
             for (document in documentSnapshot){
                 if (!Recipe_to_load.recipes_list.contains(document.get("name").toString())){
                     Recipe_to_load.recipes_list.add(document.get("name").toString())
+                    storageRef.child("${document.get("name").toString()}/mainImage/ImgFile").getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                        val image = BitmapFactory.decodeByteArray(it, 0, it.size)
+                        Recipe_to_load.preview_images.add(getImageUri(image,context))
+                        recomended_recycler?.adapter?.notifyDataSetChanged()
+                        recomended_recycler?.adapter?.notifyDataSetChanged()
+                    }.addOnFailureListener {
+                        Recipe_to_load.preview_images.add(null)
+                    }
                 }
             }
-            Log.d("recipe", Recipe_to_load.recipes_list.toString())
             recomended_recycler?.adapter?.notifyDataSetChanged()
             recomended_recycler?.adapter?.notifyDataSetChanged()
         }
     }
-    fun getRecipeData(recipe_name:String = "",adapter1:RecyclerView.Adapter<RecyclerView.ViewHolder>? = null,adapter2:RecyclerView.Adapter<RecyclerView.ViewHolder>? = null){
+    fun getRecipeData(
+        recipe_name: String = "",
+        adapter1: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null,
+        adapter2: RecyclerView.Adapter<RecyclerView.ViewHolder>? = null,
+        context: Context,
+        showRecipe: show_recipe? = null
+    ){
         val db = Firebase.firestore
         val docRef = db.collection("recipe").document(recipe_name)
         docRef.get().addOnSuccessListener { documentSnapshot ->
@@ -67,6 +81,13 @@ class LoadRecipe {
             adapter1?.notifyDataSetChanged()
             adapter2?.notifyDataSetChanged()
         }
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        storageRef.child("${recipe_name}/mainImage/ImgFile").getBytes(Long.MAX_VALUE).addOnSuccessListener {
+            val image = BitmapFactory.decodeByteArray(it, 0, it.size)
+            Recipe_to_load.preview_image = getImageUri(image,context)
+            Log.d("preview_img",Recipe_to_load.preview_image.toString())
+            showRecipe?.update()
+        }
     }
 }
-fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)

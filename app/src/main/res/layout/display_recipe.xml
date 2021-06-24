@@ -44,7 +44,9 @@
                 android:id="@+id/preview_recomended_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
                 android:editable="false"
+                android:enabled="false"
                 android:textColor="#000000" />
         </com.google.android.material.textfield.TextInputLayout>
 

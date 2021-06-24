@@ -66,7 +66,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView2"
+                            android:id="@+id/show_card_preview_img"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"

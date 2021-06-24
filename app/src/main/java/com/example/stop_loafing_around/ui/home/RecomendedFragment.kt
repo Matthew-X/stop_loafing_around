@@ -31,7 +31,7 @@ class RecomendedFragment : Fragment() {
         recomended_recycler = binding.previewRecomendedRecycler
         recomended_recycler?.adapter = r_adapter
         recomended_recycler!!.layoutManager = LinearLayoutManager(context)
-        LoadRecipe().getRecipePreview(recomended_recycler)
+        LoadRecipe().getRecipePreview(recomended_recycler,requireContext())
         return _binding?.root
     }
 

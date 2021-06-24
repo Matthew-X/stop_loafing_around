@@ -19,7 +19,7 @@ class SendRecipe {
         for (i in 0 until Recipes.steps_array.size){
             val step = JSONObject()
 
-            step.put("step_no", "Step "+i)
+            step.put("step_no", "Step "+(i+1))
             step.put("step_desc", ""+Recipes.steps_array[i].description)
             step.put("img", ""+Recipes.steps_array[i].image)
             step.put("timer", ""+(Recipes.steps_array[i].timer[0].toString().toInt()*60*60+Recipes.steps_array[i].timer[1].toString().toInt()*60+Recipes.steps_array[i].timer[2].toString().toInt()))

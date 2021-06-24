@@ -3,10 +3,10 @@ package com.example.stop_loafing_around.adapters
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -40,9 +40,11 @@ class Display_recomended_adapter(val adapter_array: ArrayList<String> = Recipe_t
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = adapter_array[position].toEditable()
-        if (Recipe_to_load.preview_image != null){
-            val inputStream = context?.contentResolver?.openInputStream(Recipe_to_load.preview_image!!)
-            var step_image = Drawable.createFromStream(inputStream, Recipe_to_load.preview_image.toString())
+        if (!Recipe_to_load.preview_images.isEmpty() && Recipe_to_load.preview_images.size == adapter_array.size && Recipe_to_load.preview_images[position] != null){
+            holder.card.visibility = View.VISIBLE
+            val inputStream = context?.contentResolver?.openInputStream(Recipe_to_load.preview_images[position]!!)
+            var step_image = Drawable.createFromStream(inputStream, Recipe_to_load.preview_images[position].toString())
+            Log.d("cantcook",Recipe_to_load.preview_images.toString())
             holder.image.setImageDrawable(step_image)
         }else holder.card.visibility = View.GONE
         holder.click_card.setOnClickListener{

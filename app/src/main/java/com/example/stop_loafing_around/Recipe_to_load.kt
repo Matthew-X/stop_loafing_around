@@ -5,6 +5,7 @@ import android.net.Uri
 object Recipe_to_load {
     var recipe_name = ""
     var preview_image: Uri? = null
+    var preview_images = arrayListOf<Uri?>()
     var recipes_list = arrayListOf<String>()
     var ingredients = arrayListOf<String>(
     )
