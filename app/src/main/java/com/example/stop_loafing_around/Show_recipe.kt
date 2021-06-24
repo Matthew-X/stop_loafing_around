@@ -32,6 +32,7 @@ class Show_recipe : AppCompatActivity() {
         ingredients_recycler!!.layoutManager = LinearLayoutManager(this)
         LoadRecipe().getRecipeData(Recipe_to_load.recipe_name,steps_recycler?.adapter,ingredients_recycler?.adapter,this,this)
         binding.createRecipeName.text = Recipe_to_load.recipe_name.toEditable()
+        binding.previewImg.setImageDrawable(Recipe_to_load.preview_image.toDrawable(this))
         val view = binding.root
 
         setContentView(view)

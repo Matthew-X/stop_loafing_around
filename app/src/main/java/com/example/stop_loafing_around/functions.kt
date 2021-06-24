@@ -3,6 +3,7 @@ package com.example.stop_loafing_around
 import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.provider.MediaStore
 import android.text.Editable
@@ -27,4 +28,9 @@ fun getImageUri(bitmap:Bitmap,context: Context): Uri {
 
     val URI = file.toUri()
     return URI
+}
+fun Uri?.toDrawable(context:Context): Drawable {
+    val inputStream = context?.contentResolver?.openInputStream(this!!)
+    var step_image = Drawable.createFromStream(inputStream, this!!.toString())
+    return step_image
 }

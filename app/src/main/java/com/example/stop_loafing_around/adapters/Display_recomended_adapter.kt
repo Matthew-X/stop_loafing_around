@@ -49,6 +49,7 @@ class Display_recomended_adapter(val adapter_array: ArrayList<String> = Recipe_t
         holder.click_card.setOnClickListener{
             Recipe_to_load.reset()
             Recipe_to_load.recipe_name = adapter_array[position]
+            Recipe_to_load.preview_image = Recipe_to_load.preview_images[position]
             val intent = Intent(context, Show_recipe::class.java)
             context?.startActivity(intent)
         }
