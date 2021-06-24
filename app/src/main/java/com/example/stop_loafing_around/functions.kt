@@ -19,7 +19,7 @@ fun getImageUri(bitmap:Bitmap,context: Context): Uri {
     file.createNewFile()
     val fileOutputStream = file.outputStream()
     val byteArrayOutputStream = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream)
+    bitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
     val bytearray = byteArrayOutputStream.toByteArray()
     fileOutputStream.write(bytearray)
     fileOutputStream.flush()
