@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documents/AndroidStudioProjects/stop_loafing_around/app/src/main/res/layout/fragment_create.xml" value="0.25" />
         <entry key="..\:/Documents/AndroidStudioProjects/stop_loafing_around/app/src/main/res/layout/show_recipe.xml" value="0.25" />
         <entry key="..\:/Documents/AndroidStudioProjects/stop_loafing_around/app/src/main/res/layout/show_step_layout.xml" value="0.25" />
       </map>
