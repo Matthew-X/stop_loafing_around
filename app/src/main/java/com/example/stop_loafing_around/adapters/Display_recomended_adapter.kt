@@ -3,7 +3,6 @@ package com.example.stop_loafing_around.adapters
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,7 +46,7 @@ class Display_recomended_adapter(val adapter_array: ArrayList<String> = Recipe_t
             holder.image.setImageDrawable(step_image)
         }else holder.card.visibility = View.GONE
         holder.click_card.setOnClickListener{
-            Recipe_to_load.reset()
+            Recipe_to_load.resetRecipePIS()
             Recipe_to_load.recipe_name = adapter_array[position]
             Recipe_to_load.preview_image = Recipe_to_load.preview_images[position]
             val intent = Intent(context, Show_recipe::class.java)

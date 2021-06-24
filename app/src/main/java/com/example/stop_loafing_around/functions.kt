@@ -34,3 +34,28 @@ fun Uri?.toDrawable(context:Context): Drawable {
     var step_image = Drawable.createFromStream(inputStream, this!!.toString())
     return step_image
 }
+
+fun trimCache(context: Context) {
+    try {
+        val dir: File = context.getCacheDir()
+        if (dir != null && dir.isDirectory()) {
+            deleteDir(dir)
+        }
+    } catch (e: Exception) {
+    }
+}
+
+fun deleteDir(dir: File?): Boolean? {
+    if (dir != null && dir.isDirectory()) {
+        val children: Array<String> = dir.list()
+        for (i in children.indices) {
+            val success = deleteDir(File(dir, children[i]))
+            if (!success!!) {
+                return false
+            }
+        }
+    }
+
+    // The directory is now empty so delete it
+    return dir?.delete()
+}
